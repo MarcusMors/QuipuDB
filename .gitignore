@@ -1,0 +1,16 @@
+client.out
+mainServer.out
+subServer.out
+relaciones.txt
+.vscode
+client.o
+mainServer.o
+subServer.o
+client
+mainServer
+subServer
+testClient.cpp
+testServer.cpp
+testClient.out
+testServer.out
+prg.exe
