@@ -1,4 +1,4 @@
-#include "comunication.h"
+#include "comunication.hpp"
 
 
 Client subServer;
@@ -21,7 +21,7 @@ bool deleteRelation(string name1, string name2, string relation){
 
     bool find = 0;
 
-    if (Data.find(name1) == Data.end()) return 0; // No existe relacion 
+    if (Data.find(name1) == Data.end()) return 0; // No existe relacion
 
     for (int i = 0; i < Data[name1].size(); ++i){
         if (Data[name1][i].first == name2 && Data[name1][i].second == relation){ // relacion encontrada
@@ -40,7 +40,7 @@ bool deleteRelation(string name1, string name2, string relation){
 
 bool deleteAll(string name1){
 
-    if (Data.find(name1) == Data.end()) return 0; // No existe relacion 
+    if (Data.find(name1) == Data.end()) return 0; // No existe relacion
     Data.erase(name1);
     return 1;
 
@@ -53,7 +53,7 @@ string read(string name1){
 
     if (Data.find(name1) == Data.end()){
         cout << "No existe relacion" << endl;
-        return "A0001;"; // No existe relacion 
+        return "A0001;"; // No existe relacion
     }
 
     for (int i = 0; i < Data[name1].size(); ++i){
@@ -68,7 +68,7 @@ string read(string name1){
 
 void Update(string name1, string name2, string relation, string newName1, string newName2, string newRelation){
 
-    if (Data.find(name1) == Data.end()) return; // No existe relacion 
+    if (Data.find(name1) == Data.end()) return; // No existe relacion
 
     deleteRelation(name1, name2, relation);
     insert(newName1, newName2, newRelation);
@@ -134,7 +134,7 @@ void parsing(string msg){
 void keepAliveThread(){
 
     while(1){
-        keepAliveClient.clientRecive();
+        keepAliveClient.receive();
     }
 
 }
@@ -143,12 +143,12 @@ void keepAliveThread(){
 void listenQuerys(){
 
     string recived_data;
-    
+
     while(1){
 
-        recived_data = subServer.clientRecive();
+        recived_data = subServer.receive();
 
-        parsing(recived_data); 
+        parsing(recived_data);
 
     }
 
